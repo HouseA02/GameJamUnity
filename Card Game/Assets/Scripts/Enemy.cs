@@ -44,12 +44,19 @@ public class Enemy : MonoBehaviour
     public void Hurt(int damage)
     {
         newDamage = damage - block;
+        block -= damage;
         if (newDamage < 0)
-        {
+        { 
             newDamage = 0;
         }
-        block -= damage;
-        currentHP -= newDamage;
+        if (currentHP - newDamage < 0)
+        {
+            currentHP = 0; 
+        } 
+        else 
+        {
+            currentHP -= newDamage; 
+        }
     }
 
     public void GainBlock(int plusBlock)

@@ -33,11 +33,18 @@ public class Player : MonoBehaviour
     {
         newDamage = damage - block;
         block -= damage;
-        if(newDamage < 0)
+        if (newDamage < 0)
         {
             newDamage = 0;
         }
-        currentHP -= newDamage;
+        if (currentHP - newDamage < 0)
+        {
+            currentHP = 0;
+        }
+        else
+        {
+            currentHP -= newDamage;
+        }
     }
 
     public void GainBlock(int plusBlock)
@@ -54,6 +61,11 @@ public class Player : MonoBehaviour
         if (block < 0)
         {
             block = 0;
+        }
+
+        if (currentHP <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
