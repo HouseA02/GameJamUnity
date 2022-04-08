@@ -62,6 +62,7 @@ public class Card : MonoBehaviour
             player.GainBlock(cardDetails.block);
             enemy.burn += cardDetails.burn;
             enemy.Hurt(cardDetails.damage);
+            enemy.Hit(cardDetails.attackType);
             turnController.Draw(cardDetails.draw);
             DiscardThis();
         }

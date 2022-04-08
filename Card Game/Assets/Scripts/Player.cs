@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int currentHP;
+    public float currentHP;
     public int currentMana;
+    public float HPProportion;
     public int maxHP;
     public int maxMana;
     public int block;
@@ -58,6 +59,7 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+        HPProportion = currentHP / maxHP;
         if (block < 0)
         {
             block = 0;

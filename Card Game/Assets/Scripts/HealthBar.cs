@@ -6,7 +6,7 @@ using TMPro;
 
 public class HealthBar : MonoBehaviour
 {
-    public Slider slider;
+    public Image fill;
     [SerializeField]
     private TMP_Text valueText;
     private int maxHP;
@@ -14,8 +14,7 @@ public class HealthBar : MonoBehaviour
     
     void Update()
     {
-        slider.maxValue = player.maxHP;
-        slider.value = player.currentHP;
+        fill.fillAmount = player.HPProportion;
         valueText.text = player.currentHP + "/" + player.maxHP;
     }
 }

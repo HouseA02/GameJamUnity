@@ -20,3 +20,4 @@ MonoBehaviour:
   draw: 0
   block: 6
   burn: 0
+  attackType: Block

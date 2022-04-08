@@ -7,10 +7,9 @@ public class Enemy : MonoBehaviour
 {
     
     public EnemyDetails enemyDetails;
-    [SerializeField]
-    public int currentHP;
-    [SerializeField]
+    public float currentHP;
     public int maxHP;
+    public float HPProportion;
     [SerializeField]
     private int newDamage;
     [SerializeField]
@@ -25,7 +24,9 @@ public class Enemy : MonoBehaviour
     public int burn;
     [SerializeField]
     public int burn2;
+    public string name;
 
+    public Animator hitEffect;
     public Player player;
     public TMP_Text intentText;
     public SpriteRenderer spriteRenderer;
@@ -33,6 +34,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        name = enemyDetails.enemyName;
         attack = enemyDetails.enemyAttack;
         blockStat = enemyDetails.enemyBlock;
         spriteRenderer.sprite = enemyDetails.enemyArt;
@@ -45,6 +47,7 @@ public class Enemy : MonoBehaviour
     {
         newDamage = damage - block;
         block -= damage;
+
         if (newDamage < 0)
         { 
             newDamage = 0;
@@ -58,8 +61,19 @@ public class Enemy : MonoBehaviour
             currentHP -= newDamage; 
         }
     }
+    public void Hit(string type)
+    {
+        switch (type)
+        {
+            case "Fire":
+                hitEffect.SetTrigger("Fire");
+                break;
 
-    public void GainBlock(int plusBlock)
+        }
+    }
+           
+
+public void GainBlock(int plusBlock)
     {
         block += plusBlock;
     }
@@ -98,6 +112,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        HPProportion = currentHP / maxHP;
         if (block < 0)
         {
             block = 0;

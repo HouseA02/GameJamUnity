@@ -6,17 +6,15 @@ using TMPro;
 
 public class EnemyHealthBar : MonoBehaviour
 {
-    public Slider slider;
+    public Image fill;
     [SerializeField]
     private TMP_Text valueText;
     private int maxHP;
     public Enemy enemy;
 
-
     void Update()
     {
-        slider.maxValue = enemy.maxHP;
-        slider.value = enemy.currentHP;
+        fill.fillAmount = enemy.HPProportion;
         valueText.text = enemy.currentHP + "/" + enemy.maxHP;
     }
 }
