@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     public string name;
 
     public Animator hitEffect;
+    public Animator PlayerHitEffect;
     public Player player;
     public TMP_Text intentText;
     public SpriteRenderer spriteRenderer;
@@ -68,6 +69,12 @@ public class Enemy : MonoBehaviour
             case "Fire":
                 hitEffect.SetTrigger("Fire");
                 break;
+            case "Magic":
+                hitEffect.SetTrigger("Magic");
+                break;
+            case "Physical":
+                hitEffect.SetTrigger("Physical");
+                break;
 
         }
     }
@@ -101,6 +108,7 @@ public void GainBlock(int plusBlock)
         if (intent == 1)
         {
             player.Hurt(attack);
+            PlayerHitEffect.SetTrigger("Physical");
         }
         if (intent == 2)
         {

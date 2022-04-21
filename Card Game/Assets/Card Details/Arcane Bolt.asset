@@ -20,4 +20,4 @@ MonoBehaviour:
   draw: 0
   block: 0
   burn: 0
-  attackType: Arcane
+  attackType: Magic
