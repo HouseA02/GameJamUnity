@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public int block;
     private int newDamage;
 
+    public Animator hitEffect;
     public HealthBar healthBar;
     public Mana mana;
     public Card card;
@@ -28,6 +29,23 @@ public class Player : MonoBehaviour
     {
         currentMana = maxMana;
         block = 0;
+    }
+
+    public void Hit(string type)
+    {
+        switch (type)
+        {
+            case "Fire":
+                hitEffect.SetTrigger("Fire");
+                break;
+            case "Magic":
+                hitEffect.SetTrigger("Magic");
+                break;
+            case "Physical":
+                hitEffect.SetTrigger("Physical");
+                break;
+
+        }
     }
 
     public void Hurt(int damage)

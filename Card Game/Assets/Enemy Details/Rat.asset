@@ -17,3 +17,4 @@ MonoBehaviour:
   enemyArt: {fileID: 21300000, guid: 3286ce29e5f62aa4b85d258ceae385f7, type: 3}
   enemyBlock: 5
   enemyHP: 25
+  attackType: Physical

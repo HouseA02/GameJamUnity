@@ -12,6 +12,6 @@ public class EnemyName : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        nameText.text = enemy.name;
+        nameText.text = enemy.Name;
     }
 }

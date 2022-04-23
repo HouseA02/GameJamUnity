@@ -14,6 +14,7 @@ public class CardDetails : ScriptableObject
     public int block;
     public int burn;
     public string attackType;
+    public string buffType;
 
     void Update()
     {

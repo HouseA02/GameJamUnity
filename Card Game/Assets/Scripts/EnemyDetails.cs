@@ -10,6 +10,7 @@ public class EnemyDetails : ScriptableObject
     public Sprite enemyArt;
     public int enemyBlock;
     public int enemyHP;
+    public string attackType;
 
     void Update()
     {

@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
     public int burn;
     [SerializeField]
     public int burn2;
-    public string name;
+    public string Name;
 
     public Animator hitEffect;
     public Animator PlayerHitEffect;
@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        name = enemyDetails.enemyName;
+        Name = enemyDetails.enemyName;
         attack = enemyDetails.enemyAttack;
         blockStat = enemyDetails.enemyBlock;
         spriteRenderer.sprite = enemyDetails.enemyArt;
@@ -102,13 +102,21 @@ public void GainBlock(int plusBlock)
     public void Action()
     {
         Hurt(burn);
+        if(burn > 0)
+        {
+            Hit("Fire");
+        }
+        else
+        {
+
+        }
         burn2 = burn / 2;
         burn = burn2;
         block = 0;
         if (intent == 1)
         {
             player.Hurt(attack);
-            PlayerHitEffect.SetTrigger("Physical");
+            player.Hit(enemyDetails.attackType);
         }
         if (intent == 2)
         {

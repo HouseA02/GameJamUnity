@@ -86,7 +86,7 @@ SortingGroup:
   m_GameObject: {fileID: 2317412083481187783}
   m_Enabled: 1
   m_SortingLayerID: -1468148613
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 4
 --- !u!1 &2317412083653811254
 GameObject:
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &2317412083653811249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,7 +357,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7573b41a8e6ccb49b5e92efd70b5631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardDetails: {fileID: 0}
+  cardName: {fileID: 0}
+  cardText: {fileID: 0}
+  manaCost: {fileID: 0}
+  cardArt: {fileID: 0}
+  turnController: {fileID: 0}
   player: {fileID: 0}
+  enemy: {fileID: 0}
+  played: 0
+  inPlay: 0
+  handNumber: 0
 --- !u!114 &2623815724762398476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,7 +394,7 @@ SortingGroup:
   m_GameObject: {fileID: 2317412083653811254}
   m_Enabled: 1
   m_SortingLayerID: -1468148613
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!1 &2317412083893529012
 GameObject:
@@ -475,7 +485,7 @@ SortingGroup:
   m_GameObject: {fileID: 2317412083893529012}
   m_Enabled: 1
   m_SortingLayerID: -1468148613
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!1 &2317412083984646647
 GameObject:
@@ -563,7 +573,7 @@ SortingGroup:
   m_GameObject: {fileID: 2317412083984646647}
   m_Enabled: 1
   m_SortingLayerID: -1468148613
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 2
 --- !u!1 &2317412084025307706
 GameObject:
@@ -709,7 +719,7 @@ SortingGroup:
   m_GameObject: {fileID: 2317412084025307706}
   m_Enabled: 1
   m_SortingLayerID: -1468148613
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 3
 --- !u!1 &2317412084075999047
 GameObject:
@@ -797,7 +807,7 @@ SortingGroup:
   m_GameObject: {fileID: 2317412084075999047}
   m_Enabled: 1
   m_SortingLayerID: -1468148613
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 6
 --- !u!1 &2317412084212908807
 GameObject:
@@ -884,7 +894,7 @@ SortingGroup:
   m_GameObject: {fileID: 2317412084212908807}
   m_Enabled: 1
   m_SortingLayerID: -1468148613
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
 --- !u!1 &2317412084353498388
 GameObject:
@@ -1030,7 +1040,7 @@ SortingGroup:
   m_GameObject: {fileID: 2317412084353498388}
   m_Enabled: 1
   m_SortingLayerID: -1468148613
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 5
 --- !u!1 &2317412084506955474
 GameObject:
@@ -1176,5 +1186,5 @@ SortingGroup:
   m_GameObject: {fileID: 2317412084506955474}
   m_Enabled: 1
   m_SortingLayerID: -1468148613
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 7

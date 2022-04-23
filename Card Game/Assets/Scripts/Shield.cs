@@ -11,18 +11,33 @@ public class Shield : MonoBehaviour
     [SerializeField]
     private GameObject shield;
     public Player player;
+    public Animator animator;
 
     void Update()
     {
         BlockText.text = player.block.ToString();
-        if (player.block > 0)
+        animator.SetInteger("Block", player.block);
+        if (player.block <= 0)
         {
-            shield.SetActive(true);
+            BlockText.enabled = false;
         }
         else
         {
-            shield.SetActive(false);
+            BlockText.enabled = true;
         }
     }
+
+    void CheckBlock()
+    {
+        if (player.block > 0)
+        {
+            animator.SetTrigger("GainBlock");
+        }
+        else
+        {
+            animator.SetTrigger("LoseBlock");
+        }
+    }
+
 }
 
