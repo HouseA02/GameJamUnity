@@ -14,7 +14,8 @@ public class TurnController : MonoBehaviour
 
     //public int Counter { get => counter; set => counter = value; }
     [SerializeField]
-
+    public Enemy enemy;
+    public Player player;
     public TMP_Text drawText;
     public TMP_Text discardText;
     public List<Card> drawPile = new List<Card>();
@@ -88,7 +89,16 @@ public class TurnController : MonoBehaviour
 
     void Start()
     {
+        StartCombat();
+    }
+
+    public void StartCombat()
+    {
+        DiscardHand();
+        Shuffle();
         Draw(3);
+        player.reset();
+        enemy.SpawnEnemy();
     }
 
     

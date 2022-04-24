@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
     public int burn2;
     public string Name;
 
+    public TurnController turnController;
     public Animator hitEffect;
     public Animator PlayerHitEffect;
     public Player player;
@@ -33,7 +34,7 @@ public class Enemy : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public EnemyHealthBar enemyHealthBar;
 
-    void Start()
+    public void SpawnEnemy()
     {
         Name = enemyDetails.enemyName;
         attack = enemyDetails.enemyAttack;
@@ -41,6 +42,9 @@ public class Enemy : MonoBehaviour
         spriteRenderer.sprite = enemyDetails.enemyArt;
         maxHP = enemyDetails.enemyHP;
         currentHP = maxHP;
+        burn = 0;
+        burn2 = 0;
+        block = 0;
         RandIntent();
     }
 
@@ -136,7 +140,7 @@ public void GainBlock(int plusBlock)
 
         if (currentHP <= 0)
         {
-            Destroy(gameObject);
+            turnController.StartCombat();
         }
     }
 }
