@@ -16,7 +16,7 @@ MonoBehaviour:
   cardText: Deal 4 damage, apply 2 burn
   manaCost: 1
   cardArt: {fileID: 21300000, guid: 63b1398afd4f54a4797ad9cbc9df3c9d, type: 3}
-  damage: 4
+  damage: 999
   draw: 0
   block: 0
   burn: 2

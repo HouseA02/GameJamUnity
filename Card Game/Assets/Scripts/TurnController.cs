@@ -96,7 +96,14 @@ public class TurnController : MonoBehaviour
     {
         DiscardHand();
         Shuffle();
-        Draw(3);
+        if(YourTurn == true)
+        {
+            Draw(3);
+        }
+        else
+        {
+
+        }
         player.reset();
         enemy.SpawnEnemy();
     }

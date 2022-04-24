@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Enemy : MonoBehaviour
 {
+    public EnemyDetails[] enemies;
+    public Sprite[] backdrops;
     
-    public EnemyDetails enemyDetails;
+    public int enemyNo;
     public float currentHP;
     public int maxHP;
     public float HPProportion;
@@ -26,6 +29,7 @@ public class Enemy : MonoBehaviour
     public int burn2;
     public string Name;
 
+    public GameObject background;
     public TurnController turnController;
     public Animator hitEffect;
     public Animator PlayerHitEffect;
@@ -34,13 +38,19 @@ public class Enemy : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public EnemyHealthBar enemyHealthBar;
 
+    void Start()
+    {
+        enemyNo = 0;
+    }
+
     public void SpawnEnemy()
     {
-        Name = enemyDetails.enemyName;
-        attack = enemyDetails.enemyAttack;
-        blockStat = enemyDetails.enemyBlock;
-        spriteRenderer.sprite = enemyDetails.enemyArt;
-        maxHP = enemyDetails.enemyHP;
+        background.GetComponent<SpriteRenderer>().sprite = backdrops[enemies[enemyNo].backDropID];
+        Name = enemies[enemyNo].enemyName;
+        attack = enemies[enemyNo].enemyAttack;
+        blockStat = enemies[enemyNo].enemyBlock;
+        spriteRenderer.sprite = enemies[enemyNo].enemyArt;
+        maxHP = enemies[enemyNo].enemyHP;
         currentHP = maxHP;
         burn = 0;
         burn2 = 0;
@@ -120,14 +130,14 @@ public void GainBlock(int plusBlock)
         if (intent == 1)
         {
             player.Hurt(attack);
-            player.Hit(enemyDetails.attackType);
+            player.Hit(enemies[enemyNo].attackType);
         }
         if (intent == 2)
         {
             GainBlock(blockStat);
         }
-        attack = enemyDetails.enemyAttack;
-        blockStat = enemyDetails.enemyBlock;
+        attack = enemies[enemyNo].enemyAttack;
+        blockStat = enemies[enemyNo].enemyBlock;
     }
 
     void Update()
@@ -140,6 +150,15 @@ public void GainBlock(int plusBlock)
 
         if (currentHP <= 0)
         {
+            if((enemyNo+1) < enemies.Length)
+            {
+                enemyNo++;
+            }
+            else
+            {
+                SceneManager.LoadScene("Victory");
+            }
+            
             turnController.StartCombat();
         }
     }

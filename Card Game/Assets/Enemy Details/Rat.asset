@@ -18,3 +18,4 @@ MonoBehaviour:
   enemyBlock: 5
   enemyHP: 25
   attackType: Physical
+  backDropID: 1

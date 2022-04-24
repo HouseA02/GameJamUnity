@@ -11,6 +11,7 @@ public class EnemyDetails : ScriptableObject
     public int enemyBlock;
     public int enemyHP;
     public string attackType;
+    public int backDropID;
 
     void Update()
     {
