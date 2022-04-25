@@ -22,3 +22,4 @@ MonoBehaviour:
   burn: 10
   attackType: Fire
   buffType: 
+  burnFactor: 0

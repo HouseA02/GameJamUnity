@@ -18,4 +18,4 @@ MonoBehaviour:
   enemyBlock: 20
   enemyHP: 50
   attackType: Fire
-  backDropID: 0
+  backDropID: 2

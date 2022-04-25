@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - PlayArea
   - HandArea
+  - GetCard
   layers:
   - Default
   - TransparentFX
@@ -65,4 +66,7 @@ TagManager:
     locked: 0
   - name: Reward
     uniqueID: 6095219
+    locked: 0
+  - name: RewardCard
+    uniqueID: 416516877
     locked: 0

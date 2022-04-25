@@ -9,36 +9,44 @@ public class TurnController : MonoBehaviour
     private bool yourTurn = true;
 
     public bool YourTurn { get => yourTurn; set => yourTurn = value; }
-    //[SerializeField]
-    //private int counter = 1000;
-
-    //public int Counter { get => counter; set => counter = value; }
     [SerializeField]
+    public bool inCombat = true;
     public Enemy enemy;
     public Player player;
     public TMP_Text drawText;
     public TMP_Text discardText;
+    public GameObject overlay;
+    public GameObject cardPrefab;
     public List<Card> drawPile = new List<Card>();
     public List<Card> discardPile = new List<Card>();
     public List<Card> hand = new List<Card>();
     public Transform[] cardSlots;
     public bool[] availableSlot;
+    public List<GetCard> getCards = new List<GetCard>();
+    public Transform[] getCardSlots;
+    public bool[] availableGetSlot;
+    public List<GetCard> chooseCards = new List<GetCard>();
+    public List<GetCard> chosenCards = new List<GetCard>();
+
     [SerializeField]
     private Switch Switch;
 
     public void Draw(int draw)
     {
-        for(int i = 0; i < draw; i++)
+        if (inCombat == true)
         {
-            if (drawPile.Count < 1)
+            for (int i = 0; i < draw; i++)
             {
-                Shuffle();
+                if (drawPile.Count < 1)
+                {
+                    Shuffle();
+                }
+                else
+                {
+
+                }
+                DrawOne();
             }
-            else
-            {
-                
-            }
-            DrawOne();
         }
     }
 
@@ -62,6 +70,52 @@ public class TurnController : MonoBehaviour
                 }
             }
         }
+    }
+    public void Reward()
+    {
+        inCombat = false;
+        overlay.SetActive(true);
+        for (int i =0; i < 2; i++)
+        {
+            RewardCards();
+        }
+    }
+
+    public void CloseReward()
+    {
+        inCombat = true;
+        overlay.SetActive(false);
+        {
+            for (int k = 0; k < 2; k++)
+            {
+                availableGetSlot[k] = true;
+            }
+            foreach (GetCard getCard in chooseCards)
+            {
+                chosenCards.Add(getCard);
+                getCard.gameObject.SetActive(false);
+            }
+            chooseCards.Clear();
+        }
+        StartCombat();
+    }
+
+    public void RewardCards()
+    {
+        GetCard getRandCard = getCards[Random.Range(0, getCards.Count)];
+        for (int j = 0; j < availableGetSlot.Length; j++)
+        {
+            if (availableGetSlot[j] == true)
+            {
+                getRandCard.gameObject.SetActive(true);
+                chooseCards.Add(getRandCard);
+                getRandCard.transform.position = getCardSlots[j].position;
+                availableGetSlot[j] = false;
+                getCards.Remove(getRandCard);
+                return;
+            }
+        }
+
     }
 
     public void Shuffle()
@@ -89,7 +143,7 @@ public class TurnController : MonoBehaviour
 
     void Start()
     {
-        StartCombat();
+        
     }
 
     public void StartCombat()
@@ -113,12 +167,5 @@ public class TurnController : MonoBehaviour
     {
         drawText.text = drawPile.Count.ToString();
         discardText.text = discardPile.Count.ToString();
-        /*counter--;
-        if (counter == 0)
-        {
-            Switch.SetSwtiched(true);
-            counter = 1000;
-        }*/
-            
     }
 }

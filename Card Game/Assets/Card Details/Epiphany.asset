@@ -21,4 +21,6 @@ MonoBehaviour:
   block: 0
   burn: 0
   attackType: 
-  buffType: Draw
+  buffType: Bulb
+  burnFactor: 0
+  manaGain: 0

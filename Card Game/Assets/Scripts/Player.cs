@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -44,7 +45,12 @@ public class Player : MonoBehaviour
             case "Physical":
                 hitEffect.SetTrigger("Physical");
                 break;
-
+            case "Bulb":
+                hitEffect.SetTrigger("Bulb");
+                break;
+            case "Lightning":
+                hitEffect.SetTrigger("Lightning");
+                break;
         }
     }
 
@@ -85,7 +91,7 @@ public class Player : MonoBehaviour
 
         if (currentHP <= 0)
         {
-            Destroy(gameObject);
+            SceneManager.LoadScene(3);
         }
     }
 }

@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
 {
     public EnemyDetails[] enemies;
     public Sprite[] backdrops;
-    
+    [SerializeField]
     public int enemyNo;
     public float currentHP;
     public int maxHP;
@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     public int burn;
     [SerializeField]
     public int burn2;
+    public int shock;
     public string Name;
 
     public GameObject background;
@@ -75,6 +76,18 @@ public class Enemy : MonoBehaviour
         {
             currentHP -= newDamage; 
         }
+        if (currentHP <= 0)
+        {
+            if ((enemyNo+1) == enemies.Length)
+            {
+                SceneManager.LoadScene("Victory");
+            }
+            else
+            {
+                enemyNo++;
+            }
+            turnController.Reward();
+        }
     }
     public void Hit(string type)
     {
@@ -89,12 +102,28 @@ public class Enemy : MonoBehaviour
             case "Physical":
                 hitEffect.SetTrigger("Physical");
                 break;
-
+            case "Lightning":
+                hitEffect.SetTrigger("Lightning");
+                break;
         }
     }
-           
 
-public void GainBlock(int plusBlock)
+    public void Burn(int plusBurn, int burnFactor)
+    {
+        burn += plusBurn;
+        if(burnFactor < 1)
+        {
+            burnFactor = 1;
+        }
+        burn = burn * burnFactor;
+    }
+          
+    public void Shock(int plusShock)
+    {
+        shock += plusShock;
+    }
+
+    public void GainBlock(int plusBlock)
     {
         block += plusBlock;
     }
@@ -147,19 +176,10 @@ public void GainBlock(int plusBlock)
         {
             block = 0;
         }
-
-        if (currentHP <= 0)
-        {
-            if((enemyNo+1) < enemies.Length)
-            {
-                enemyNo++;
-            }
-            else
-            {
-                SceneManager.LoadScene("Victory");
-            }
-            
-            turnController.StartCombat();
+        if(shock >= 10){
+            Hurt(10);
+            Hit("Lightning");
+            shock = 0;
         }
     }
 }

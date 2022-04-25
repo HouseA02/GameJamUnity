@@ -16,11 +16,13 @@ public class Card : MonoBehaviour
     public TurnController turnController;
     public Player player;
     public Enemy enemy;
+    public DummyCard dummyCard;
 
     public bool played;
     [SerializeField]
     private bool inPlay = false;
     public int handNumber;
+    public bool isNew = false;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -38,7 +40,7 @@ public class Card : MonoBehaviour
     {
         if (other.gameObject.tag == "PlayArea")
         {
-            Invoke("NotInPlay", 300);
+            Invoke("NotInPlay", 0.05f);
             Debug.Log("Left Collision");
         }
         else
@@ -51,7 +53,6 @@ public class Card : MonoBehaviour
         inPlay = false;
     }
 
-
     public void Play()
     {
         if (inPlay == true  && player.currentMana >= cardDetails.manaCost)
@@ -60,9 +61,11 @@ public class Card : MonoBehaviour
             turnController.availableSlot[handNumber] = true;
             player.SpendMana(cardDetails.manaCost);
             player.GainBlock(cardDetails.block);
-            enemy.burn += cardDetails.burn;
+            player.Hit(cardDetails.buffType);
+            enemy.Burn(cardDetails.burn, cardDetails.burnFactor);
             enemy.Hurt(cardDetails.damage);
             enemy.Hit(cardDetails.attackType);
+            enemy.Shock(cardDetails.shock);
             turnController.Draw(cardDetails.draw);
             DiscardThis();
         }
@@ -83,8 +86,15 @@ public class Card : MonoBehaviour
         cardText.text = cardDetails.cardText;
         manaCost.text = cardDetails.manaCost.ToString();
         cardArt.sprite = cardDetails.cardArt;
-        //
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        enemy = GameObject.Find("BasicEnemy").GetComponent<Enemy>();
+        turnController = GameObject.Find("TurnController").GetComponent<TurnController>();
+        turnController.drawPile.Add(this);
+    }
+
+    public void Inherit()
+    {
+        cardDetails = dummyCard.GetComponent<CardDetails>();
     }
 
     void Update()
